@@ -6,8 +6,8 @@
 
 ## 安装
 
-1. 准备 Minecraft **26.1.2**、Fabric Loader **0.19.3 或更新的兼容版本**、对应版本的 Fabric API 和 Java 25。
-2. 从 [Releases](../../releases) 下载 `ice-practice-0.8.1+26.1.2.jar`，放进对应游戏实例的 `mods` 文件夹。
+1. 准备 Minecraft **26.1.2 或 26.2**、Fabric Loader **0.19.3 或更新的兼容版本**、对应版本的 Fabric API 和 Java 25。
+2. 从 [Releases](../../releases) 下载与你的游戏版本对应的 `ice-practice-0.8.1+26.1.2.jar` 或 `ice-practice-0.8.1+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。两个文件不可互换。
 3. 重启游戏。**不需要安装 Skyblocker**：坐标描边、文字和瞄准区域由模组独立渲染。
 
 如果原来的 Skyblocker ICE 航点仍在显示，建议在 Skyblocker 里关闭这些航点，避免原有光柱与本模组描边重叠。模组不会自动修改 Skyblocker 的航点文件。
@@ -74,7 +74,7 @@
 .\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints
 ```
 
-macOS / Linux 使用 `./gradlew`。构建产物位于 `build/libs/`。首次构建需要下载 Gradle 和依赖。
+macOS / Linux 使用 `./gradlew`。主分支构建 26.1.2 版本；构建 26.2 版本请先切换到 [mc-26.2 分支](../../tree/mc-26.2)。构建产物位于 `build/libs/`。首次构建需要下载 Gradle 和依赖。
 
 ## 许可与致谢
 
