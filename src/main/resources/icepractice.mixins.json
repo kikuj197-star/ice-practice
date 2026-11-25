@@ -1,0 +1,1 @@
+{"required":true,"minVersion":"0.8","package":"local.icepractice.mixin","compatibilityLevel":"JAVA_21","client":["IceProbePacketMixin","IceRenderPipelinesAccessor","IceRenderTypeAccessor"],"injectors":{"defaultRequire":1}}

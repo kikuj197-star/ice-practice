@@ -1,0 +1,820 @@
+{
+  "version": 1,
+  "enabled": true,
+  "simpleLabels": true,
+  "standColor": "FF0000",
+  "aimColor": "00FF00",
+  "clearColor": "FF8C00",
+  "waypoints": [
+    {
+      "type": "STAND",
+      "x": 52,
+      "y": 153,
+      "z": 274,
+      "name": "01 200 STAND 52.70,274.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 58,
+      "y": 155,
+      "z": 274,
+      "name": "01 200 AIM -90.00/0.75 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 22,
+      "y": 164,
+      "z": 305,
+      "name": "03 194 STAND 22.50,305.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 22,
+      "y": 166,
+      "z": 302,
+      "name": "03 194 AIM -169.61/12.15 DIG6",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 66,
+      "y": 145,
+      "z": 361,
+      "name": "04 193 STAND 66.50,361.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 63,
+      "y": 147,
+      "z": 361,
+      "name": "04 193 AIM 79.61/8.28 DIG2",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -75,
+      "y": 130,
+      "z": 317,
+      "name": "05 190 STAND -74.43,317.70",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -75,
+      "y": 130,
+      "z": 317,
+      "name": "05 190 AIM -179.10/83.40 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -58,
+      "y": 162,
+      "z": 359,
+      "name": "06 190 STAND -57.49,359.70",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -58,
+      "y": 164,
+      "z": 364,
+      "name": "06 190 AIM 5.03/6.43 DIG1",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 101,
+      "y": 135,
+      "z": 318,
+      "name": "08 189 STAND 101.50,318.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 105,
+      "y": 137,
+      "z": 318,
+      "name": "08 189 AIM -95.99/7.82 DIG5",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 111,
+      "y": 139,
+      "z": 335,
+      "name": "09 188 STAND 111.50,335.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 111,
+      "y": 141,
+      "z": 332,
+      "name": "09 188 AIM 173.59/12.27 DIG3",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -30,
+      "y": 127,
+      "z": 334,
+      "name": "10 185 STAND -29.50,334.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -30,
+      "y": 128,
+      "z": 333,
+      "name": "10 185 AIM 135.45/43.05 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 103,
+      "y": 141,
+      "z": 375,
+      "name": "11 183 STAND 103.50,375.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 102,
+      "y": 141,
+      "z": 375,
+      "name": "11 183 AIM 100.76/50.84 DIG1",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 93,
+      "y": 132,
+      "z": 287,
+      "name": "12 179 STAND 93.50,287.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 92,
+      "y": 133,
+      "z": 288,
+      "name": "12 179 AIM 40.04/19.81 DIG1",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 78,
+      "y": 132,
+      "z": 351,
+      "name": "14 177 STAND 78.50,351.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 78,
+      "y": 132,
+      "z": 350,
+      "name": "14 177 AIM 159.06/50.71 DIG1",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 46,
+      "y": 118,
+      "z": 281,
+      "name": "15 175 STAND 46.50,281.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 46,
+      "y": 118,
+      "z": 281,
+      "name": "15 175 AIM 136.05/70.35 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -38,
+      "y": 122,
+      "z": 437,
+      "name": "16 176 STAND -37.50,437.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -37,
+      "y": 125,
+      "z": 439,
+      "name": "16 176 AIM -28.37/-8.34 DIG5",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -97,
+      "y": 159,
+      "z": 308,
+      "name": "17 174 STAND -96.50,308.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -97,
+      "y": 160,
+      "z": 311,
+      "name": "17 174 AIM 5.43/10.44 DIG3",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -42,
+      "y": 150,
+      "z": 354,
+      "name": "19 171 STAND -41.50,354.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -42,
+      "y": 150,
+      "z": 354,
+      "name": "19 171 AIM 121.50/71.07 DIG2",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -37,
+      "y": 121,
+      "z": 291,
+      "name": "20 168 STAND -36.50,291.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -37,
+      "y": 124,
+      "z": 292,
+      "name": "20 168 AIM -20.94/-16.08 DIG3",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -85,
+      "y": 143,
+      "z": 327,
+      "name": "21 166 STAND -84.50,327.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -86,
+      "y": 145,
+      "z": 328,
+      "name": "21 166 AIM 71.55/17.55 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": 19,
+      "y": 126,
+      "z": 456,
+      "name": "22 166 STAND 19.50,456.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 19,
+      "y": 126,
+      "z": 456,
+      "name": "22 166 AIM 121.50/71.07 DIG1",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "STAND",
+      "x": -118,
+      "y": 152,
+      "z": 357,
+      "name": "23 165 STAND -117.50,357.50",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": -118,
+      "y": 155,
+      "z": 357,
+      "name": "23 165 AIM 44.85/-89.85 DIG0",
+      "group": "ICE Calculated 160+",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 21,
+      "y": 165,
+      "z": 305,
+      "name": "03 DIG 1/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 21,
+      "y": 166,
+      "z": 305,
+      "name": "03 DIG 2/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 22,
+      "y": 165,
+      "z": 305,
+      "name": "03 DIG 3/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 22,
+      "y": 166,
+      "z": 305,
+      "name": "03 DIG 4/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 22,
+      "y": 166,
+      "z": 304,
+      "name": "03 DIG 5/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 22,
+      "y": 166,
+      "z": 303,
+      "name": "03 DIG 6/6",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 65,
+      "y": 147,
+      "z": 361,
+      "name": "04 DIG 1/2",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 64,
+      "y": 147,
+      "z": 361,
+      "name": "04 DIG 2/2",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -58,
+      "y": 164,
+      "z": 363,
+      "name": "06 DIG 1/1",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 101,
+      "y": 136,
+      "z": 318,
+      "name": "08 DIG 1/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 101,
+      "y": 137,
+      "z": 318,
+      "name": "08 DIG 2/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 102,
+      "y": 137,
+      "z": 318,
+      "name": "08 DIG 3/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 103,
+      "y": 137,
+      "z": 318,
+      "name": "08 DIG 4/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 104,
+      "y": 137,
+      "z": 318,
+      "name": "08 DIG 5/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 111,
+      "y": 140,
+      "z": 335,
+      "name": "09 DIG 1/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 111,
+      "y": 141,
+      "z": 334,
+      "name": "09 DIG 2/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 111,
+      "y": 141,
+      "z": 333,
+      "name": "09 DIG 3/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 102,
+      "y": 142,
+      "z": 375,
+      "name": "11 DIG 1/1",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 92,
+      "y": 134,
+      "z": 288,
+      "name": "12 DIG 1/1",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 78,
+      "y": 133,
+      "z": 350,
+      "name": "14 DIG 1/1",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -38,
+      "y": 123,
+      "z": 437,
+      "name": "16 DIG 1/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -38,
+      "y": 124,
+      "z": 437,
+      "name": "16 DIG 2/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -38,
+      "y": 124,
+      "z": 438,
+      "name": "16 DIG 3/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -37,
+      "y": 124,
+      "z": 438,
+      "name": "16 DIG 4/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -37,
+      "y": 124,
+      "z": 439,
+      "name": "16 DIG 5/5",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -97,
+      "y": 161,
+      "z": 309,
+      "name": "17 DIG 1/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -97,
+      "y": 161,
+      "z": 310,
+      "name": "17 DIG 2/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -97,
+      "y": 161,
+      "z": 311,
+      "name": "17 DIG 3/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -42,
+      "y": 152,
+      "z": 354,
+      "name": "19 DIG 1/2",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -42,
+      "y": 151,
+      "z": 354,
+      "name": "19 DIG 2/2",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -37,
+      "y": 123,
+      "z": 291,
+      "name": "20 DIG 1/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -37,
+      "y": 122,
+      "z": 291,
+      "name": "20 DIG 2/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": -37,
+      "y": 123,
+      "z": 292,
+      "name": "20 DIG 3/3",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "CLEAR",
+      "x": 19,
+      "y": 127,
+      "z": 456,
+      "name": "22 DIG 1/1",
+      "group": "ICE Clear Before Throw",
+      "enabled": true
+    },
+    {
+      "type": "AIM",
+      "x": 52,
+      "y": 153,
+      "z": 274,
+      "name": "A",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 18,
+      "y": 163,
+      "z": 303,
+      "name": "B",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 99,
+      "y": 134,
+      "z": 318,
+      "name": "C",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 110,
+      "y": 138,
+      "z": 337,
+      "name": "D",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -32,
+      "y": 128,
+      "z": 332,
+      "name": "E",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -27,
+      "y": 125,
+      "z": 299,
+      "name": "muncher",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 81,
+      "y": 131,
+      "z": 348,
+      "name": "F",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -75,
+      "y": 133,
+      "z": 317,
+      "name": "G",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 45,
+      "y": 117,
+      "z": 280,
+      "name": "H",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 24,
+      "y": 142,
+      "z": 299,
+      "name": "I",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -118,
+      "y": 151,
+      "z": 357,
+      "name": "J",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -77,
+      "y": 156,
+      "z": 363,
+      "name": "K",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -58,
+      "y": 162,
+      "z": 359,
+      "name": "L",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": -43,
+      "y": 153,
+      "z": 354,
+      "name": "M",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 105,
+      "y": 139,
+      "z": 376,
+      "name": "N",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 94,
+      "y": 130,
+      "z": 286,
+      "name": "O",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 21,
+      "y": 126,
+      "z": 456,
+      "name": "P",
+      "group": "Original A-Q",
+      "enabled": false
+    },
+    {
+      "type": "AIM",
+      "x": 5,
+      "y": 149,
+      "z": 392,
+      "name": "Q",
+      "group": "Original A-Q",
+      "enabled": false
+    }
+  ]
+}
