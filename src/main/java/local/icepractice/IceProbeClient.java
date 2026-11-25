@@ -51,6 +51,7 @@ public final class IceProbeClient implements ClientModInitializer {
         Observation(ClientLevel level) { this.level=level; }
     }
     @Override public void onInitializeClient() {
+        IceGameContext.initialize();
         IceWaypoints.initialize();
         IceWorldRenderer.initialize();
         IceWaypointScreen.register();

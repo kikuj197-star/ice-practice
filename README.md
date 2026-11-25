@@ -2,12 +2,12 @@
 
 **史上最强skyblock炸冰模组** — 用站点、瞄点、清除方块描边和 Pickobulus 瞄准区域，帮助你在 Glacite Tunnels 中快速定位炸冰位置。
 
-> 当前为 **0.8.1 测试版**。炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
+> 当前为 **0.8.2 测试版**。炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
 
 ## 安装
 
 1. 准备 Minecraft **26.1.2 或 26.2**、Fabric Loader **0.19.3 或更新的兼容版本**、对应版本的 Fabric API 和 Java 25。
-2. 从 [Releases](../../releases) 下载与你的游戏版本对应的 `ice-practice-0.8.1+26.1.2.jar` 或 `ice-practice-0.8.1+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。两个文件不可互换。
+2. 从 [Releases](../../releases) 下载与你的游戏版本对应的 `ice-practice-0.8.2+26.1.2.jar` 或 `ice-practice-0.8.2+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。两个文件不可互换。
 3. 重启游戏。**不需要安装 Skyblocker**：坐标描边、文字和瞄准区域由模组独立渲染。
 
 如果原来的 Skyblocker ICE 航点仍在显示，建议在 Skyblocker 里关闭这些航点，避免原有光柱与本模组描边重叠。模组不会自动修改 Skyblocker 的航点文件。
@@ -36,6 +36,8 @@
 默认描边分别为**红色站点**、**绿色瞄点**、**橙色清除方块**。站点标记的是脚下的方块，而不是玩家脚所在的空气格。站点和瞄点持续描边；清除方块在玩家五格内且已不是浮冰时隐藏，离开范围后重新显示。
 
 模组自带一组 Glacite 默认点位，以及默认关闭的 A–Q 原始标记。`START` 入口点不导入。已有的 Skyblocker 航点不会被自动读取或修改。
+
+坐标仅在 Hypixel SkyBlock 矮人矿井和单人世界中显示，切换到其他服务器或岛屿后自动隐藏。安装 Hypixel Mod API 时优先根据地点事件判断；未安装时尝试从侧栏和 TAB 信息保守识别，信息不足时不会显示。
 
 ## 瞄准区域设置与指令
 
@@ -71,7 +73,7 @@
 需要 JDK 25：
 
 ```powershell
-.\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints
+.\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints testIceLocation
 ```
 
 macOS / Linux 使用 `./gradlew`。主分支构建 26.1.2 版本；构建 26.2 版本请先切换到 [mc-26.2 分支](../../tree/mc-26.2)。构建产物位于 `build/libs/`。首次构建需要下载 Gradle 和依赖。
