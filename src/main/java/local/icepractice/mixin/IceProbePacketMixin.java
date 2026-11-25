@@ -45,7 +45,7 @@ public abstract class IceProbePacketMixin {
     }
     @Inject(method="handleAddEntity",at=@At("HEAD"))
     private void add(ClientboundAddEntityPacket p,CallbackInfo ci){
-        if(p.getType()==EntityType.PLAYER || !IceProbeClient.nearby(p.getX(),p.getY(),p.getZ()))return;
+        if(p.getType()==net.minecraft.world.entity.EntityTypes.PLAYER || !IceProbeClient.nearby(p.getX(),p.getY(),p.getZ()))return;
         IceProbeClient.addPacketEntity(p.getId());JsonObject e=event("entity_spawn");e.addProperty("entity_id",p.getId());e.addProperty("type",BuiltInRegistries.ENTITY_TYPE.getKey(p.getType()).toString());e.add("position",IceProbeClient.point(p.getX(),p.getY(),p.getZ()));e.add("velocity",IceProbeClient.point(p.getMovement().x,p.getMovement().y,p.getMovement().z));IceProbeClient.event(e);
     }
     @Inject(method="handleMoveEntity",at=@At("HEAD"))

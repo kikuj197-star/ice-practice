@@ -1,12 +1,12 @@
 plugins { id 'net.fabricmc.fabric-loom' version '1.17.14' }
-version = '0.8.1+26.1.2'
+version = '0.8.1+26.2'
 group = 'local.icepractice'
 base { archivesName = 'ice-practice' }
 repositories { mavenCentral() }
 dependencies {
- minecraft 'com.mojang:minecraft:26.1.2'
+ minecraft 'com.mojang:minecraft:26.2'
  implementation 'net.fabricmc:fabric-loader:0.19.3'
- implementation 'net.fabricmc.fabric-api:fabric-api:0.155.2+26.1.2'
+ implementation 'net.fabricmc.fabric-api:fabric-api:0.160.0+26.2'
 }
 java { toolchain.languageVersion = JavaLanguageVersion.of(25) }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release.set(25) }
