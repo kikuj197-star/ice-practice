@@ -1,5 +1,5 @@
 plugins { id 'net.fabricmc.fabric-loom' version '1.17.14' }
-version = '0.8.2+26.1.2'
+version = '0.8.3+26.1.2'
 group = 'local.icepractice'
 base { archivesName = 'ice-practice' }
 repositories { mavenCentral() }
@@ -23,3 +23,4 @@ tasks.register("testIceAngleMath", JavaExec) { dependsOn testClasses; classpath 
 tasks.register("testIceAngleCache", JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = "local.icepractice.IceAngleCacheTest" }
 tasks.register("testIceWaypoints", JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = "local.icepractice.IceWaypointsTest" }
 tasks.register("testIceLocation", JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = "local.icepractice.IceLocationRulesTest" }
+tasks.register("testIceWorldIdentity", JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = "local.icepractice.IceWorldIdentityTest" }
