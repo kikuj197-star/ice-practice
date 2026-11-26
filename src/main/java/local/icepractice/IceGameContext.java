@@ -13,6 +13,7 @@ public final class IceGameContext {
  private static void reset(){apiDwarven=null;showWaypoints=false;ticks=0;}
  private static void refresh(Minecraft c){if(c.player==null||c.level==null){showWaypoints=false;return;}boolean single=c.getSingleplayerServer()!=null;boolean fallback=!single&&apiDwarven==null&&IceLocationRules.fallback(locationLines(c));showWaypoints=IceLocationRules.display(single,apiDwarven,fallback);}
  public static boolean showWaypoints(){return showWaypoints;}
+ public static boolean verifiedHypixelDwarven(){return Boolean.TRUE.equals(apiDwarven);}
  private static List<String> locationLines(Minecraft c){ArrayList<String> lines=new ArrayList<>(tabLines());Scoreboard board=c.level.getScoreboard();Objective o=board.getDisplayObjective(DisplaySlot.SIDEBAR);if(o!=null){lines.add(o.getDisplayName().getString());for(PlayerScoreEntry e:board.listPlayerScores(o)){PlayerTeam t=board.getPlayersTeam(e.owner());lines.add(t==null?e.owner():t.getPlayerPrefix().getString()+e.owner()+t.getPlayerSuffix().getString());}}return lines;}
  private static void registerOptionalHypixelLocation(){try{
   Class<?> apiClass=Class.forName("net.hypixel.modapi.HypixelModAPI");Class<?> packet=Class.forName("net.hypixel.modapi.packet.impl.clientbound.event.ClientboundLocationPacket");Class<?> handlerType=Class.forName("net.hypixel.modapi.handler.ClientboundPacketHandler");Object api=apiClass.getMethod("getInstance").invoke(null);

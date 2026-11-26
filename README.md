@@ -2,12 +2,12 @@
 
 **史上最强skyblock炸冰模组** — 用站点、瞄点、清除方块描边和 Pickobulus 瞄准区域，帮助你在 Glacite Tunnels 中快速定位炸冰位置。
 
-> 当前为 **0.8.2 测试版**。炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
+> 当前为 **0.8.3 测试版**。炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
 
 ## 安装
 
 1. 准备 Minecraft **26.2**、Fabric Loader **0.19.3 或更新的兼容版本**、对应版本的 Fabric API 和 Java 25。
-2. 从 [Releases](../../releases) 下载 `ice-practice-0.8.2+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。
+2. 从 [Releases](../../releases) 下载 `ice-practice-0.8.3+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。
 3. 重启游戏。**不需要安装 Skyblocker**：坐标描边、文字和瞄准区域由模组独立渲染。
 
 如果原来的 Skyblocker ICE 航点仍在显示，建议在 Skyblocker 里关闭这些航点，避免原有光柱与本模组描边重叠。模组不会自动修改 Skyblocker 的航点文件。
@@ -22,6 +22,8 @@
 6. 当模组观察到高亮内右键后技能进入冷却、附近浮冰发生变化时，会把该区域保存下来。之后从同一站位对准同一方块，可跳过耗时计算。站位需精确到约 **0.04 格**，站立与下蹲分别匹配；保存上限为 128 条。
 
 周围的冰因 Mining Spread 或采矿发生变化时，已缓存的定位区域仍会显示，当前预测数量会重新计算。缓存代表之前保存的区域；矿脉变化较大时，如需重新计算当前区域，可使用 `/iceangle refresh`。
+
+安装 Hypixel Mod API 并确认所在地点为 Hypixel SkyBlock 矮人矿井时，不同连接入口共用同一矿井缓存；其他服务器和单人世界仍分别保存。旧版同一连接入口的缓存命中后会自动迁移，其他旧入口的记录不会未经确认自动合并。
 
 ## 坐标与描边
 
@@ -73,7 +75,7 @@
 需要 JDK 25：
 
 ```powershell
-.\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints testIceLocation
+.\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints testIceLocation testIceWorldIdentity
 ```
 
 macOS / Linux 使用 `./gradlew`。构建产物位于 `build/libs/`。首次构建需要下载 Gradle 和依赖。
