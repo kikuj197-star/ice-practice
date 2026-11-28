@@ -1,5 +1,5 @@
 plugins { id 'net.fabricmc.fabric-loom' version '1.17.14' }
-version = '1.0.0+26.2'
+version = '1.0.1+26.2'
 group = 'local.icepractice'
 base { archivesName = 'ice-practice' }
 repositories { mavenCentral() }

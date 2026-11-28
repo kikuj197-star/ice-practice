@@ -15,7 +15,10 @@ final class MiningProfitCompression {
         String[] ordinary={"Glacite","Mithril","Titanium","Tungsten","Umber","Coal","Diamond","Emerald","Ice","Redstone","Lapis Lazuli","Quartz","Obsidian","Cobblestone"};
         for(String name:ordinary)r.add(new Rule(name,"Enchanted "+name,160));
         r.add(new Rule("Iron Ingot","Enchanted Iron",160));r.add(new Rule("Gold Ingot","Enchanted Gold",160));
+        r.add(new Rule("Iron Ingot","Enchanted Iron Ingot",160));r.add(new Rule("Gold Ingot","Enchanted Gold Ingot",160));r.add(new Rule("Redstone Dust","Enchanted Redstone Dust",160));
         r.add(new Rule("Hard Stone","Enchanted Hard Stone",576));
+        for(String name:new String[]{"Coal","Diamond","Emerald","Lapis Lazuli"})r.add(new Rule("Enchanted "+name,"Enchanted "+name+" Block",160));
+        r.add(new Rule("Enchanted Iron Ingot","Enchanted Iron Block",160));r.add(new Rule("Enchanted Gold Ingot","Enchanted Gold Block",160));
         return List.copyOf(r);
     }
     static Map<String,Long> conversionDeltas(Map<String,Long> added,Map<String,Long> removed){

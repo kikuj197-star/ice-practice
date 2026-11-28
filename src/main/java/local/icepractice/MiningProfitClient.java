@@ -33,6 +33,7 @@ public final class MiningProfitClient {
     private static final ExecutorService NETWORK=Executors.newSingleThreadExecutor(r->{Thread t=new Thread(r,"ice-profit-prices");t.setDaemon(true);return t;});
     private record Price(String id,Double npc,Double bazaar,int color){}
     private record Batch(long time,Map<String,Long> items){}
+    private record HoverKey(boolean added,Map<String,Long> items){}
     private static volatile Map<String,Price> prices=Map.of();
     private static volatile String priceStatus="loading";
     private static final Map<String,Long> session=new HashMap<>(),total=new HashMap<>();
@@ -40,15 +41,16 @@ public final class MiningProfitClient {
     private static Path path,legacyPath;private static String owner=""; private static boolean enabled=true,totalMode=false,bazaar=true;
     private static int limit=10,background=0; private static float x=.02f,y=.12f,scale=1f;
     private static long sessionTime,totalTime,lastEvent,lastTick,lastInput,lastMining,lastCorpse,lastSave,lastFetch;
+    private static long lastSackTime;private static Map<String,Long> lastSackAdded=Map.of(),lastSackRemoved=Map.of();
     private static int excluded;
     private static void msg(String s){Minecraft c=Minecraft.getInstance();if(c.player!=null)c.player.sendSystemMessage(Component.literal("[Mining Profit] "+s));}
     public static void initialize(){
-        legacyPath=Minecraft.getInstance().gameDirectory.toPath().resolve("config/icepractice/mining-profit-v2.json");path=legacyPath.resolveSibling("mining-profit-v3.json");if(!Files.exists(legacyPath))legacyPath=legacyPath.resolveSibling("mining-profit.json");load();
+        legacyPath=Minecraft.getInstance().gameDirectory.toPath().resolve("config/icepractice/mining-profit-v3.json");path=legacyPath.resolveSibling("mining-profit-v4.json");if(!Files.exists(legacyPath))legacyPath=legacyPath.resolveSibling("mining-profit-v2.json");if(!Files.exists(legacyPath))legacyPath=legacyPath.resolveSibling("mining-profit.json");load();
         HudElementRegistry.attachElementBefore(VanillaHudElements.CROSSHAIR,Identifier.fromNamespaceAndPath("icepractice","mining_profit"),(g,d)->render(g,false));
         ClientReceiveMessageEvents.ALLOW_GAME.register((message,overlay)->{if(!overlay)message(message);return true;});
         ClientTickEvents.END_CLIENT_TICK.register(MiningProfitClient::tick);
         ClientLifecycleEvents.CLIENT_STOPPING.register(c->{flushPending(true);save();NETWORK.shutdownNow();});
-        ClientPlayConnectionEvents.DISCONNECT.register((h,c)->{flushPending(true);lastEvent=0;lastTick=0;lastInput=0;lastMining=0;save();});
+        ClientPlayConnectionEvents.DISCONNECT.register((h,c)->{flushPending(true);lastEvent=0;lastTick=0;lastInput=0;lastMining=0;lastSackTime=0;lastSackAdded=Map.of();lastSackRemoved=Map.of();save();});
         ClientCommandRegistrationCallback.EVENT.register((d,r)->d.register(ClientCommands.literal("miningprofit")
             .executes(c->{Minecraft mc=Minecraft.getInstance();mc.execute(()->mc.gui.setScreen(new MiningProfitScreen(mc.gui.screen())));return 1;})
             .then(ClientCommands.literal("reset").executes(c->{resetSession();msg("Session reset.");return 1;}))
@@ -64,15 +66,19 @@ public final class MiningProfitClient {
         if(!IceGameContext.verifiedHypixelSkyblock())return;String text=c.getString();long now=System.nanoTime();
         if(CORPSE.matcher(text).find()){lastCorpse=now;for(Iterator<Batch> it=pending.iterator();it.hasNext();)if(now-it.next().time<DELAY){it.remove();excluded++;}return;}
         if(!text.startsWith("[Sacks]"))return;
-        Map<String,Long> added=new HashMap<>(),removed=new HashMap<>();collectChanges(c,added,removed);Map<String,Long> additions=MiningProfitCompression.conversionDeltas(added,removed);
+        Map<String,Long> added=new HashMap<>(),removed=new HashMap<>();collectChanges(c,added,removed,new HashSet<>());
+        if(added.isEmpty())return;
+        if(lastSackTime!=0&&now-lastSackTime<250_000_000L&&lastSackAdded.equals(added)&&lastSackRemoved.equals(removed))return;
+        lastSackTime=now;lastSackAdded=Map.copyOf(added);lastSackRemoved=Map.copyOf(removed);
+        Map<String,Long> additions=MiningProfitCompression.conversionDeltas(added,removed);
         if(additions.isEmpty())return;
         if(lastMining==0||now-lastMining>EVIDENCE||lastCorpse!=0&&now-lastCorpse<DELAY){excluded++;return;}
         pending.add(new Batch(now,additions));
     }
-    static void collect(Component c,Map<String,Long> out){collectChanges(c,out,new HashMap<>());}
-    private static void collectChanges(Component c,Map<String,Long> added,Map<String,Long> removed){
-        if(c.getStyle().getHoverEvent() instanceof HoverEvent.ShowText h){String s=h.value().getString();boolean plus=s.startsWith("Added items:"),minus=s.startsWith("Removed items:");if(plus||minus){Matcher m=ENTRY.matcher(s);while(m.find()){if(plus&&!m.group(1).equals("+")||minus&&!m.group(1).equals("-"))continue;String sack=m.group(4).toLowerCase(Locale.ROOT);if(!(sack.contains("mining")||sack.contains("gemstone")))continue;try{long n=Long.parseLong(m.group(2).replace(",",""));String name=normalizeName(m.group(3));if(n>0&&!name.isEmpty())(plus?added:removed).merge(name,n,Long::sum);}catch(NumberFormatException ignored){}}}}
-        for(Component child:c.getSiblings())collectChanges(child,added,removed);
+    static void collect(Component c,Map<String,Long> out){collectChanges(c,out,new HashMap<>(),new HashSet<>());}
+    private static void collectChanges(Component c,Map<String,Long> added,Map<String,Long> removed,Set<HoverKey> seen){
+        if(c.getStyle().getHoverEvent() instanceof HoverEvent.ShowText h){String s=h.value().getString();boolean plus=s.startsWith("Added items:"),minus=s.startsWith("Removed items:");if(plus||minus){Map<String,Long> parsed=new HashMap<>();Matcher m=ENTRY.matcher(s);while(m.find()){if(plus&&!m.group(1).equals("+")||minus&&!m.group(1).equals("-"))continue;String sack=m.group(4).toLowerCase(Locale.ROOT);if(!(sack.contains("mining")||sack.contains("gemstone")))continue;try{long n=Long.parseLong(m.group(2).replace(",",""));String name=normalizeName(m.group(3));if(n>0&&!name.isEmpty())parsed.merge(name,n,Long::sum);}catch(NumberFormatException ignored){}}if(!parsed.isEmpty()&&seen.add(new HoverKey(plus,Map.copyOf(parsed))))parsed.forEach((k,v)->(plus?added:removed).merge(k,v,Long::sum));}}
+        for(Component child:c.getSiblings())collectChanges(child,added,removed,seen);
     }
     private static void tick(Minecraft c){long now=System.nanoTime();
         if(c.player!=null){String uuid=c.player.getUUID().toString();if(!uuid.equals(owner)){flushPending(true);save();owner=uuid;total.clear();totalTime=0;session.clear();sessionTime=0;loadOwner();lastEvent=0;}if(c.gui.screen()==null&&(c.options.keyAttack.isDown()||c.options.keyUse.isDown()))lastInput=now;}
