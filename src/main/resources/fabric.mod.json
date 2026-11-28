@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "icepractice",
-  "version": "0.8.3+26.1.2",
+  "version": "1.0.0+26.1.2",
   "name": "Ice Practice",
   "description": "Glacite waypoint outlines, Pickobulus aim-area preview and single-player practice",
   "license": "LGPL-3.0-only",

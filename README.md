@@ -2,15 +2,27 @@
 
 **史上最强skyblock炸冰模组** — 用站点、瞄点、清除方块描边和 Pickobulus 瞄准区域，帮助你在 Glacite Tunnels 中快速定位炸冰位置。
 
-> 当前为 **0.8.3 测试版**。炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
+炸冰数量和区域由客户端模型估算；服务器机制、其他玩家采矿以及 Mining Spread 等会影响实际结果。本项目与 Hypixel、Skyblocker 无官方关联。
 
 ## 安装
 
 1. 准备 Minecraft **26.1.2 或 26.2**、Fabric Loader **0.19.3 或更新的兼容版本**、对应版本的 Fabric API 和 Java 25。
-2. 从 [Releases](../../releases) 下载与你的游戏版本对应的 `ice-practice-0.8.3+26.1.2.jar` 或 `ice-practice-0.8.3+26.2.jar`，放进对应游戏实例的 `mods` 文件夹。两个文件不可互换。
+2. 从 [Releases](../../releases) 下载与你的游戏版本对应的模组，放进对应游戏实例的 `mods` 文件夹。两个版本不可互换。
 3. 重启游戏。**不需要安装 Skyblocker**：坐标描边、文字和瞄准区域由模组独立渲染。
 
 如果原来的 Skyblocker ICE 航点仍在显示，建议在 Skyblocker 里关闭这些航点，避免原有光柱与本模组描边重叠。模组不会自动修改 Skyblocker 的航点文件。
+
+## 挖矿收益统计
+
+安装 **Hypixel Mod API**，在 Hypixel 打开 Sack 聊天通知，然后输入 `/miningprofit` 打开设置。界面可切换本次或累计、NPC 或 Bazaar 挂单价格，调整显示物品数量、HUD 位置、大小和背景不透明度，并重置本次统计；也可输入 `/miningprofit reset`、`/miningprofit limit 10` 或 `/miningprofit status`。
+
+HUD 在金矿、深矿、矮人矿井、宝石洞窟和矿井竖井显示，物品名称按 Hypixel 品质着色。按每种物品的估计总价值排序，默认显示前 10 种，并显示总收益、每小时效率和计时。总收益包含未显示在前 10 种中的可估价矿物。Session 在每次启动游戏时重置，Total 按 Minecraft 账号跨重启保存；1 分钟没有新的合格矿物时计时暂停。累计数据目前不按 SkyBlock profile 区分，不同游戏实例也分别保存。
+
+价格定期从 Hypixel 公开 API 更新，BZ 使用挂单侧的价格估计，未减交易税；没有可靠价格的物品显示 `N/A`，汇总显示 `+ ?`。此功能仅估算被识别的 Mining/Gemstone Sack 入袋量，不包括进入背包或 Sack 已满时未入袋的物品，也不能识别停用的 Sack 通知。
+
+自动压缩时，模组会根据同一条 Sack 更新中输入减少和输出增加的数量，识别常见矿物及宝石转换，减少原矿并增加成品，避免把两者重复计价。无对应原料减少的附魔物品仍会计入，例如 Compact 附魔的直接产物；压缩机保留部分原矿时按实际减少量识别。如果压缩消耗了统计开始前的原料，收益会按对应原料价格抵扣这部分已有库存，HUD 显示 `Adjusted`。若服务器把转换的减少和增加分在不同消息中，或出现不在规则内的配方，仍可能产生误差；同批其他来源的移出和直接掉落恰好符合配方时也可能被误判。
+
+模组结合附近方块变化与玩家操作判断挖矿，并暂存消息以过滤附近的尸体奖励。服务器可能把多个来源合并成同一条 Sack 提示，因此尸体附近的模糊批次会整批排除，可能少算紧邻开尸体的挖矿收入；无法保证过滤所有非挖矿来源。HUD 的 `Filtered` 是被排除的批次数。为避免误计，退出或切服时尚在观察窗口内的批次也会被丢弃。
 
 ## 推荐炸冰流程
 
@@ -23,7 +35,7 @@
 
 周围的冰因 Mining Spread 或采矿发生变化时，已缓存的定位区域仍会显示，当前预测数量会重新计算。缓存代表之前保存的区域；矿脉变化较大时，如需重新计算当前区域，可使用 `/iceangle refresh`。
 
-安装 Hypixel Mod API 并确认所在地点为 Hypixel SkyBlock 矮人矿井时，不同连接入口共用同一矿井缓存；其他服务器和单人世界仍分别保存。旧版同一连接入口的缓存命中后会自动迁移，其他旧入口的记录不会未经确认自动合并。
+安装 Hypixel Mod API 并确认所在地点为 Hypixel SkyBlock 矮人矿井时，不同连接入口共用同一矿井缓存；其他服务器和单人世界仍分别保存。
 
 ## 坐标与描边
 
@@ -75,7 +87,7 @@
 需要 JDK 25：
 
 ```powershell
-.\gradlew.bat build -x test testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints testIceLocation testIceWorldIdentity
+.\gradlew.bat build -x test testMiningProfit testIceModel testIceUnion testIceAngleMath testIceAngleCache testIceWaypoints testIceLocation testIceWorldIdentity
 ```
 
 macOS / Linux 使用 `./gradlew`。主分支构建 26.1.2 版本；构建 26.2 版本请先切换到 [mc-26.2 分支](../../tree/mc-26.2)。构建产物位于 `build/libs/`。首次构建需要下载 Gradle 和依赖。

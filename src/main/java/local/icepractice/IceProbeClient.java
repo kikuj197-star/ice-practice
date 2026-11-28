@@ -57,6 +57,7 @@ public final class IceProbeClient implements ClientModInitializer {
         IceWaypointScreen.register();
         IceUnionClient.initialize();
         IceAngleClient.initialize();
+        MiningProfitClient.initialize();
         ClientCommandRegistrationCallback.EVENT.register((d,r) -> d.register(ClientCommands.literal("iceprobe")
             .then(ClientCommands.literal("start").executes(c -> start()))
             .then(ClientCommands.literal("stop").executes(c -> stop()))
