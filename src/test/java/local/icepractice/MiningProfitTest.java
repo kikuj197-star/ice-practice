@@ -11,6 +11,15 @@ public final class MiningProfitTest {
         Component message=Component.literal("[Sacks] ").append(added).append(removed);
         Map<String,Long> found=new HashMap<>();MiningProfitClient.collect(message,found);
         if(!found.equals(Map.of("Glacite",1234L,"Rough Ruby Gemstone",20L)))throw new AssertionError("Unexpected parsed entries: "+found);
+        Component repeated=Component.literal("[Sacks] ").append(added).append(added.copy()).append(removed).append(removed.copy());
+        Map<String,Long> repeatedFound=new HashMap<>();MiningProfitClient.collect(repeated,repeatedFound);
+        if(!repeatedFound.equals(found))throw new AssertionError("Repeated hover counted twice: "+repeatedFound);
+        Component withPrice=Component.literal("+123 items").withStyle(s->s.withHoverEvent(new HoverEvent.ShowText(Component.literal("Added items:\n+1,234 Glacite (Mining Sack)\n+20 \uE051 Rough Ruby Gemstone (Gemstone Sack)\n+9 Wheat (Farming Sack)\nNPC Sell Price: 100 coins"))));
+        Map<String,Long> modifiedFound=new HashMap<>();MiningProfitClient.collect(Component.literal("[Sacks]").append(added).append(withPrice),modifiedFound);
+        if(!modifiedFound.equals(found))throw new AssertionError("Same items with appended price counted twice: "+modifiedFound);
+        Component later=Component.literal("+more").withStyle(s->s.withHoverEvent(new HoverEvent.ShowText(Component.literal("Added items:\n+9 Glacite (Mining Sack)"))));
+        Map<String,Long> distinct=new HashMap<>();MiningProfitClient.collect(Component.literal("[Sacks]").append(added).append(later),distinct);
+        if(distinct.get("Glacite")!=1243L)throw new AssertionError("Distinct hover was lost: "+distinct);
         if(!MiningProfitClient.normalizeName("\uE051 Flawed Peridot Gemstone").equals("Flawed Peridot Gemstone"))throw new AssertionError("Gemstone name normalization failed");
         var inputs=Map.of("Rough Peridot Gemstone",200L,"Flawed Peridot Gemstone",3L,"Fine Peridot Gemstone",1L,"Enchanted Glacite",2L);
         var removals=Map.of("Rough Peridot Gemstone",160L,"Flawed Peridot Gemstone",80L,"Glacite",320L);
@@ -24,6 +33,8 @@ public final class MiningProfitTest {
         if(!compact.equals(Map.of("Enchanted Glacite",1L)))throw new AssertionError("Direct enchanted drop discarded");
         var screenshot=MiningProfitCompression.conversionDeltas(Map.of("Enchanted Glacite",28L,"Glacite",4434L,"Enchanted Hard Stone",1L,"Hard Stone",402L),Map.of("Glacite",4480L,"Hard Stone",576L));
         if(!screenshot.equals(Map.of("Enchanted Glacite",28L,"Glacite",-46L,"Enchanted Hard Stone",1L,"Hard Stone",-174L)))throw new AssertionError("Screenshot sack conversion incorrect: "+screenshot);
+        var metals=MiningProfitCompression.conversionDeltas(Map.of("Iron Ingot",200L,"Enchanted Iron Ingot",1L,"Redstone Dust",250L,"Enchanted Redstone Dust",1L),Map.of("Iron Ingot",160L,"Redstone Dust",160L));
+        if(!metals.equals(Map.of("Iron Ingot",40L,"Enchanted Iron Ingot",1L,"Redstone Dust",90L,"Enchanted Redstone Dust",1L)))throw new AssertionError("Iron/redstone conversion incorrect: "+metals);
         var file=java.nio.file.Files.createTempFile("profit-gems-", ".json");
         try {
             java.nio.file.Files.writeString(file,"{\"accounts\":{\"test\":{\"timeNanos\":42,\"items\":{\"\\uE051 Flawed Peridot Gemstone\":20,\"Flawed Peridot Gemstone\":3}}}}");
@@ -38,6 +49,9 @@ public final class MiningProfitTest {
         var onMessage=MiningProfitClient.class.getDeclaredMethod("message",Component.class);onMessage.setAccessible(true);
         var pending=MiningProfitClient.class.getDeclaredField("pending");pending.setAccessible(true);
         onMessage.invoke(null,message);if(((List<?>)pending.get(null)).size()!=1)throw new AssertionError("Mining batch was not queued");
+        onMessage.invoke(null,repeated);if(((List<?>)pending.get(null)).size()!=1)throw new AssertionError("Same sack notification counted twice");
+        var lastSack=MiningProfitClient.class.getDeclaredField("lastSackTime");lastSack.setAccessible(true);lastSack.setLong(null,System.nanoTime()-1_000_000_000L);
+        onMessage.invoke(null,message);if(((List<?>)pending.get(null)).size()!=2)throw new AssertionError("A later identical notification was ignored");
         onMessage.invoke(null,Component.literal("  TUNGSTEN CORPSE LOOT! "));if(!((List<?>)pending.get(null)).isEmpty())throw new AssertionError("Nearby corpse batch not discarded");
         onMessage.invoke(null,message);if(!((List<?>)pending.get(null)).isEmpty())throw new AssertionError("Corpse window batch not discarded");
         System.out.println("Mining sack hover parsing and corpse exclusion passed.");
